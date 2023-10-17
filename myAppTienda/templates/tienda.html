@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="container text-center mt-10">
+
+    <div class="fixed">
+
+        {% include "widget.html" %}
+
+    </div>
+
+    <div class="row justify-center ml-52">
+
+    {% for producto in productos %}
+
+    <div class="card bg-black caja ml-4 hv2 cursor-pointer" style="width: 18rem;">
+      <img src="{{producto.imagen.url}}" class="h-52 figure-img img-cover rounded" alt="...">
+        <div class="card-body bg-black text-white">
+          <h5 class="card-title">{{producto.nombre}}</h5>
+          <p class="card-text">${{producto.precio}}</p>
+          <a href="{% url 'Add' producto.id %}" class="btn bg-red-600 text-white mt-4">Agregar</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+    <title>ADIDAS</title>
+    <link rel="icon" type="img/png" href="{% static 'gato-icono.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+          body {
+            font-family: 'Trade Winds', cursive;
+            background: black;
+          }
+
+          .hv1 {
+            transition: .4s;
+          }
+
+          .hv1:hover {
+            text-decoration: overline #dc2626;
+            transform: scale(1.15);
+          }
+
+          .hv2 {
+            transition: .4s;
+          }
+
+          .hv2:hover {
+            transform: scale(1.03);
+          }
+
+          body b {
+            color: #f97316;
+          }
+
+          .caja {
+            box-shadow: 1px 2px 2px #dc2626;
+
+          }
+ 
+        }
+      </style>
+  </head>
+  <body>
+
+    <footer class="bg-red-800 justify-between flex rounded-full">
+        <a href=""><img src="{% static 'adidas.png' %}" alt="" class="cursor-pointer mt-2 ml-28 hv1 min-[320px]:mr-10 max-[990px]:ml-4"></a>
+        {% if request.user.is_authenticated %}
+          <h4 class="text-black font-semibold mt-6 text-sm"><b class="text-white">Hola </b> {{ user.username}}, <b class="text-white text-sm">Bienvenid@</b><a href="{% url 'cerrar_cesion' %}"><img src="{% static 'exit.png' %}" alt="" class="ml-20 hv1 my-2 min-[320px]:mr-28 max-[990px]:"></a></h4>
+        {% else %}
+        <a href="{% url 'login' %}"><img src="{% static 'login.png' %}" alt="" class="mt-4 hv1"></a>
+        {% endif %}
+        <div class="mb-4">
+            <a href="mailto:julianalzatemonsalve@gmail.com" target="_blank" class="inline-block text-sm leading-none mt-4 mr-2 lg:mt-0 hv1"><img src="{% static 'gmail.png' %}" alt="" class="cursor-pointer"></a>
+            <a href="https://wa.me/573002926420" target="_blank"  class="inline-block text-sm leading-none mr-10 lg:mt-0 hv1"><img src="{% static 'whatsapp.png' %}" alt="" class="cursor-pointer"></a>
+          </div>
+      </footer>
+
+
+      <nav class="flex items-center justify-between flex-wrap bg-stone-900 rounded-full mx-auto caja mt-2">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <svg class="fill-current h-8 w-8 mr-2 ml-10 cursor-pointer hover:text-red-600" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <span class="font-semibold text-xl tracking-tight cursor-pointer hover:text-red-600">ADIDAS<span>
+        </div>
+        <div class="block lg:hidden">
+          <button id='boton' class="flex items-center px-3 py-2 border rounded text-orange-500 border-orange-500 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+        </div>
+        <div id='menu' class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-center mb-4 ">
+          <div class="text-md lg:flex-grow justify-evenly">
+            <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4 hv1">Inicio</a>
+            <a href="/tienda" class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4 hv1">Tienda</a>
+            <a href="/contact" class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4 hv1">Contacto</a>
+            <a href="/registro" class="block mt-4 lg:inline-block lg:mt-0 text-white mr-4 hv1">Registrate!</a>
+          </div>
+        </div>
+      </nav>
+
+      
+      {% block content %}
+      {% endblock %}
+
+
+
+
+      <footer class="bg-stone-900 shadow m-4 cursor-pointer rounded-full caja min-[320px]:mx-auto max-[990px]:">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8 ">
+            <div class="sm:flex sm:items-center sm:justify-between ">
+                <a href="" class="flex items-center mb-4 sm:mb-0">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-red-600 min-[320px]:mx-auto max-[640px]:">ADIDAS</span>
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-xs font-medium text-white">
+                    <li class="hv1">
+                        <a href="/ " class="mr-4 md:mr-6 min-[320px]:ml-6 max-[990px]:">Inicio</a>
+                    </li>
+                    <li class="hv1">
+                        <a href="/tienda/" class="mr-4 md:mr-6">Tienda</a>
+                    </li>
+                    <li class="hv1">
+                        <a href="/contact/" class="mr-4 md:mr-6">Contacto</a>
+                    </li>
+                    <li class="hv1">
+                    <a href="/registro/" class="mr-4 md:mr-6">Registrate!</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 sm:mx-auto border-white lg:my-8" />
+            <span class="block text-xs sm:text-center text-red-600 min-[320px]:ml-4 max-[990px]: min-[320px]:mx-auto max-[990px]:">© 2023 <a href="" class="">ADIDAS</a>. Made by JulianAM06 - GitHub</span>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'app.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
